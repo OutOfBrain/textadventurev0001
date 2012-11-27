@@ -92,28 +92,82 @@ class Player {
   Room location;
 
   Player() {
-    this.location= new RoomStore();
+    this.location = new RoomStore();
   }
 
   go(direction) {
-    Room newRoom = location.match(direction);
+    Room newRoom = location.match(direction[0]);
     if (newRoom != null) {
       this.location = newRoom;
       print('you are now in ${this.location.description}');
+    }
+    else {
+      print('you did not move');
     }
   }
 }
 
 
+/**
+ * GAME
+ */
+class Game {
+  Player player = new Player();
+
+  Game() {
+
+  }
+
+
+  /**
+   * dispatches commands from the player to actions fo change the game world
+   */
+  dispatch(var cmd) {
+    var function = (parameter) => print('no valid action');
+
+    // find base command and call accourding action
+    cmd = cmd.split(' ');
+
+    switch (cmd[0]) {
+      case 'go':
+      case 'move':
+        function = this.go;
+        break;
+
+      case 'look':
+      case 'desc':
+      case 'describe':
+        function = this.look;
+        break;
+    }
+
+    // remove cmd do the params are left over
+    cmd.removeAt(0);
+    var params = cmd;
+
+    // call found action
+    function(params);
+  }
+
+
+  // move to another room
+  go(params) {
+    player.go(params);
+  }
+
+  // look at, in something or around
+  look(params) {
+    print(params);
+  }
+}
+
 
 void main() {
-  Player player = new Player();
+  Game game = new Game();
   StringInputStream input = new StringInputStream(stdin);
 
   input.onLine = () {
     String line = input.readLine();
-    if (line.startsWith('go')) {
-      player.go(line.substring(line.indexOf('go ')+3));
-    }
+    game.dispatch(line);
   };
 }
