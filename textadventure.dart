@@ -14,8 +14,9 @@ abstract class Room {
 
 
 class RoomStore extends Room implements Room {
+  var description = 'Store Room';
+
   RoomStore() {
-    this.description = 'Store Room';
   }
 
   Room match(String direction) {
@@ -40,9 +41,7 @@ class RoomStore extends Room implements Room {
 
 
 class RoomHide extends Room implements Room {
-  RoomHide() {
-    this.description = 'Hidden Room';
-  }
+  var description = 'Hidden Room';
 
   Room match(String direction) {
 
@@ -51,9 +50,7 @@ class RoomHide extends Room implements Room {
 
 
 class RoomKitchen extends Room implements Room {
-  RoomKitchen() {
-    this.description = 'Kitchen';
-  }
+  var description = 'Kitchen';
 
   Room match(String direction) {
 
@@ -62,9 +59,7 @@ class RoomKitchen extends Room implements Room {
 
 
 class RoomHall extends Room implements Room {
-  RoomHall() {
-    this.description = 'Hall';
-  }
+  var description = 'Hall';
 
   Room match(String direction) {
 
@@ -73,9 +68,7 @@ class RoomHall extends Room implements Room {
 
 
 class RoomStudy extends Room implements Room {
-  RoomStudy() {
-    this.description = 'Study Room';
-  }
+  var description = 'Study Room';
 
   Room match(String direction) {
 
@@ -84,9 +77,7 @@ class RoomStudy extends Room implements Room {
 
 
 class RoomCloset extends Room implements Room {
-  RoomCloset() {
-    this.description = 'Closet';
-  }
+  var description = 'Closet';
 
   Room match(String direction) {
 
